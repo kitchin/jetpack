@@ -1483,7 +1483,7 @@ class Grunion_Contact_Form extends Crunion_Contact_Form_Shortcode {
 		}
 		if ( !empty( $comment_content_label ) ) {
 			//$message .= "$comment_content_label: $comment_content\n";
-			$message .= sprintf ( "<b>%s: </b>%s<br /><br />", $comment_content_label, $comment_content );
+			$message .= sprintf ( "<b>%s: </b>%s<br /><br />", $comment_content_label, wpautop ( $comment_content ) );
 		}
 		if ( !empty( $extra_values ) ) {
 			foreach ( $extra_values as $label => $value ) {
