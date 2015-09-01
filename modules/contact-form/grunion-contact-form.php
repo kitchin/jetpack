@@ -1462,7 +1462,7 @@ class Grunion_Contact_Form extends Crunion_Contact_Form_Shortcode {
 
 		$headers =  'From: "' . $comment_author  .'" <' . $from_email_addr  . ">\r\n" .
 					'Reply-To: "' . $comment_author . '" <' . $reply_to_addr  . ">\r\n" .
-					"Content-Type: text/plain; charset=\"" . get_option('blog_charset') . "\"";
+					"Content-Type: text/html; charset=\"" . get_option('blog_charset') . "\"";
 
 		$subject = apply_filters( 'contact_form_subject', $contact_form_subject, $all_values );
 		$url     = $widget ? home_url( '/' ) : get_permalink( $post->ID );
@@ -1471,15 +1471,19 @@ class Grunion_Contact_Form extends Crunion_Contact_Form_Shortcode {
 		$date_time_format = sprintf( $date_time_format, get_option( 'date_format' ), get_option( 'time_format' ) );
 		$time = date_i18n( $date_time_format, current_time( 'timestamp' ) );
 
-		$message = "$comment_author_label: $comment_author\n";
+		//$message = "$comment_author_label:$comment_author\n";
+		$message = sprintf ( "<b>%s: </b>%s<br /><br />", $comment_author_label, $comment_author );
 		if ( !empty( $comment_author_email ) ) {
-			$message .= "$comment_author_email_label: $comment_author_email\n";
+			//$message .= "$comment_author_email_label: $comment_author_email\n";
+			$message .= sprintf ( "<b>%s: </b>%s<br /><br />", $comment_author_email_label, $comment_author_email );
 		}
 		if ( !empty( $comment_author_url ) ) {
-			$message .= "$comment_author_url_label: $comment_author_url\n";
+			//$message .= "$comment_author_url_label: $comment_author_url\n";
+			$message .= sprintf ( "<b>%s: </b>%s<br /><br />", $comment_author_url_label, $comment_author_url );
 		}
 		if ( !empty( $comment_content_label ) ) {
-			$message .= "$comment_content_label: $comment_content\n";
+			//$message .= "$comment_content_label: $comment_content\n";
+			$message .= sprintf ( "<b>%s: </b>%s<br /><br />", $comment_content_label, $comment_content );
 		}
 		if ( !empty( $extra_values ) ) {
 			foreach ( $extra_values as $label => $value ) {
@@ -1487,9 +1491,9 @@ class Grunion_Contact_Form extends Crunion_Contact_Form_Shortcode {
 			}
 		}
 		$message .= "\n";
-		$message .= __( 'Time:', 'jetpack' ) . ' ' . $time . "\n";
-		$message .= __( 'IP Address:', 'jetpack' ) . ' ' . $comment_author_IP . "\n";
-		$message .= __( 'Contact Form URL:', 'jetpack' ) . " $url\n";
+		$message .= __( 'Time:', 'jetpack' ) . ' ' . $time . "<br />";
+		$message .= __( 'IP Address:', 'jetpack' ) . ' ' . $comment_author_IP . "<br />";
+		$message .= __( 'Contact Form URL:', 'jetpack' ) . " $url" . "<br />";
 
 		if ( is_user_logged_in() ) {
 			$message .= "\n";
@@ -1502,7 +1506,7 @@ class Grunion_Contact_Form extends Crunion_Contact_Form_Shortcode {
 		}
 
 		$message = apply_filters( 'contact_form_message', $message );
-		$message = Grunion_Contact_Form_Plugin::strip_tags( $message );
+		//$message = Grunion_Contact_Form_Plugin::strip_tags( $message );
 
 		// keep a copy of the feedback as a custom post type
 		$feedback_time   = current_time( 'mysql' );
