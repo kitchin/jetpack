@@ -1472,26 +1472,26 @@ class Grunion_Contact_Form extends Crunion_Contact_Form_Shortcode {
 		$time = date_i18n( $date_time_format, current_time( 'timestamp' ) );
 
 		//$message = "$comment_author_label:$comment_author\n";
-		$message = sprintf ( "<b>%s: </b>%s<br /><br />", $comment_author_label, $comment_author );
+		$message = sprintf ( "<b>%s:</b> %s<br /><br />", $comment_author_label, $comment_author );
 		if ( !empty( $comment_author_email ) ) {
 			//$message .= "$comment_author_email_label: $comment_author_email\n";
-			$message .= sprintf ( "<b>%s: </b>%s<br /><br />", $comment_author_email_label, $comment_author_email );
+			$message .= sprintf ( "<b>%s:</b> %s<br /><br />", $comment_author_email_label, $comment_author_email );
 		}
 		if ( !empty( $comment_author_url ) ) {
 			//$message .= "$comment_author_url_label: $comment_author_url\n";
-			$message .= sprintf ( "<b>%s: </b>%s<br /><br />", $comment_author_url_label, $comment_author_url );
+			$message .= sprintf ( "<b>%s:</b> %s<br /><br />", $comment_author_url_label, $comment_author_url );
 		}
 		if ( !empty( $comment_content_label ) ) {
 			//$message .= "$comment_content_label: $comment_content\n";
-			$message .= sprintf ( "<b>%s: </b>%s<br /><br />", $comment_content_label, wpautop ( $comment_content ) );
+			$message .= sprintf ( "<b>%s:</b> %s<br /><br />", $comment_content_label, wpautop ( $comment_content ) );
 		}
 		if ( !empty( $extra_values ) ) {
 			foreach ( $extra_values as $label => $value ) {
 				//$message .= preg_replace( '#^\d+_#i', '', $label ) . ': ' . trim( $value ) . "\n";
-				$message .= sprintf ( "<b>%s: </b>%s<br /><br />", preg_replace( '#^\d+_#i', '', $label ), trim( $value ) );
+				$message .= sprintf ( "<b>%s:</b> %s<br /><br />", preg_replace( '#^\d+_#i', '', $label ), trim( $value ) );
 			}
 		}
-		$message .= "\n";
+		$message .= "\n\n";
 		$message .= __( 'Time:', 'jetpack' ) . ' ' . $time . "<br />";
 		$message .= __( 'IP Address:', 'jetpack' ) . ' ' . $comment_author_IP . "<br />";
 		$message .= __( 'Contact Form URL:', 'jetpack' ) . " $url" . "<br />";
