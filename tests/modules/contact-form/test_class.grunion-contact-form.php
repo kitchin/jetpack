@@ -294,7 +294,7 @@ class WP_Test_Grunion_Contact_Form extends WP_UnitTestCase {
 		$submission = $feedback[0];
 		$email = get_post_meta( $submission->ID, '_feedback_email', true );
 
-		$expected = 'Name: John Doe' . PHP_EOL;
+		$expected = '<b>Name: </b>John Doe<br /><br />';
 		$expected .= 'Dropdown: First option' . PHP_EOL;
 		$expected .= 'Radio: Second option' . PHP_EOL;
 		$expected .= 'Text: Texty text';
@@ -321,7 +321,7 @@ class WP_Test_Grunion_Contact_Form extends WP_UnitTestCase {
 			$this->assertContains( 'mellow@hello.com', $args['to'] );
 			$this->assertEquals( 'Hello there!', $args['subject'] );
 
-			$expected = 'Name: John Doe' . PHP_EOL;
+			$expected = '<b>Name: </b>John Doe<br /><br />';
 			$expected .= 'Dropdown: First option' . PHP_EOL;
 			$expected .= 'Radio: Second option' . PHP_EOL;
 			$expected .= 'Text: Texty text';
