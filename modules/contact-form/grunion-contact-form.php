@@ -1487,7 +1487,8 @@ class Grunion_Contact_Form extends Crunion_Contact_Form_Shortcode {
 		}
 		if ( !empty( $extra_values ) ) {
 			foreach ( $extra_values as $label => $value ) {
-				$message .= preg_replace( '#^\d+_#i', '', $label ) . ': ' . trim( $value ) . "\n";
+				//$message .= preg_replace( '#^\d+_#i', '', $label ) . ': ' . trim( $value ) . "\n";
+				$message .= sprintf( "<b>" . preg_replace( '#^\d+_#i', '', $label ) . ': . "</b>" ' . trim( $value ) . "<br />";
 			}
 		}
 		$message .= "\n";
